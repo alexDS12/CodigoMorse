@@ -1,25 +1,25 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+/*Código não totalmente atualizado, pode conter algum problema*/
  
 int verificar(char *morse){
     int i, flag=0;
     for(i=0; *(morse+i)!='\0'; i++){
         if( *(morse+i)!='.' && *(morse+i)!='-' && *(morse+i)!=' '){
-            flag=1;
-            return 1;
+            flag = 1;
+            return flag;
         }
     }
-    if(flag==0)
-        return 0;
+    return flag;
 } 
  
 void traducao(char *morse){
 	FILE *fp;
 	int i, j, x;
 	char indices[36] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	char **string, aux[6];
-	
+	char **string, aux[6];	
 	
 	if((fp=fopen("CMorse.txt", "r"))==NULL){
 		printf("Erro ao abrir o arquivo");
@@ -32,7 +32,6 @@ void traducao(char *morse){
 		string[i] = (char *) malloc(6*sizeof(char));
 	}
 		
-	//string[i] = *(string+i)
 	for(i=0; i<36; i++){
 		fscanf(fp, "%s\n", string[i]);
 	}
@@ -57,8 +56,6 @@ void traducao(char *morse){
 		//printf("\n%s\n", aux);
 		morse++;
 	}while(*(morse+i)!='\0');
-	
-	return ;
 }
  
 int main(){
